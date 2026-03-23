@@ -260,7 +260,7 @@ require("lazy").setup({
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "pyright" }
+                ensure_installed = { "pyright", "clangd", "gopls" }
             })
         end
     },
@@ -269,6 +269,8 @@ require("lazy").setup({
         "neovim/nvim-lspconfig",
         config = function()
             vim.lsp.enable("pyright")
+            vim.lsp.enable("clangd")
+            vim.lsp.enable("gopls")
         end
     },
 
