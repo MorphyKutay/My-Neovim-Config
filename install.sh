@@ -12,6 +12,12 @@ INIT_DEST="$CONFIG_DIR/init.lua"
 echo "My-Neovim-Config Installation"
 echo "============================="
 
+if ! command -v unzip &> /dev/null; then
+    echo "Error: unzip command not found" >&2
+    exit 1
+fi
+
+
 # Create config directory (if it doesn't exist)
 if [ ! -d "$CONFIG_DIR" ]; then
     echo "Creating: $CONFIG_DIR"
