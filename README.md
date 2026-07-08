@@ -123,3 +123,10 @@ Run `:Lazy sync` inside Neovim to update plugins.
 - **Theme:** Replace `tokyonight-night` with `tokyonight-storm` or `tokyonight-day` in `init.lua`
 - **LSP:** Install more LSPs via `:Mason`; add them to the `vim.lsp.enable()` line in `init.lua`
 - **Tree-sitter:** Add languages to `ensure_installed` and run `:TSUpdate`
+
+
+
+## 📸 screenshot
+
+
+![screenshot](demo.png)
