@@ -9,11 +9,17 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INIT_SRC="$SCRIPT_DIR/init.lua"
 INIT_DEST="$CONFIG_DIR/init.lua"
 
+
 echo "My-Neovim-Config Installation"
 echo "============================="
 
 if ! command -v unzip &> /dev/null; then
     echo "Error: unzip command not found" >&2
+    exit 1
+fi
+
+if ! command -v go &> /dev/null; then
+    echo "Error: go command not found" >&2
     exit 1
 fi
 
