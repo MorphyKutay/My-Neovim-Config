@@ -23,6 +23,27 @@ if ! command -v go &> /dev/null; then
     exit 1
 fi
 
+#echo "--- Nerd Font kurulu mu? ---"; 
+fc-list 2>/dev/null | grep -iE "nerd|symbols" | head
+
+#echo "--- sonuç ---"
+if fc-list 2>/dev/null | grep -qi nerd; then
+    continue
+else 
+    echo "Nerd Font is Not Found"
+    #echo "Do you Want install Nerd Font"
+    read -p "Do want install Nerd Font [y/n]: " nerdfont
+    if [[ "$nerdfont" == "y" ]];then
+        mkdir -p ~/.local/share/fonts/
+        cd /tmp
+        wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+        unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMonoNerdFont
+
+        fc-cache -fv
+    else
+        exit 1
+    fi
+fi
 
 # Create config directory (if it doesn't exist)
 if [ ! -d "$CONFIG_DIR" ]; then
