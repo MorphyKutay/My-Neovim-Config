@@ -23,6 +23,11 @@ if ! command -v go &> /dev/null; then
     exit 1
 fi
 
+if ! command -v fc-cache &> /dev/null; then
+    echo "Error: fc-cache command not found" >&2
+    exit 1
+fi
+
 #echo "--- Nerd Font kurulu mu? ---"; 
 fc-list 2>/dev/null | grep -iE "nerd|symbols" | head
 
