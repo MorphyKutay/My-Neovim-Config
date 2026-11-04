@@ -14,7 +14,25 @@ Modern and minimal Neovim configuration. A development environment powered by To
 sudo pacman -S neovim git base-devel
 ```
 
+### Windows
+```powershell
+winget install Neovim.Neovim Git.Git zig.zig Kitware.CMake GoLang.Go
+```
+(`zig`/`gcc`/`clang` any one C compiler; `make` or `cmake` for telescope-fzf-native.)
+
 ## 🚀 Installation
+
+### Windows (PowerShell)
+
+Copies `init.lua` to `%LOCALAPPDATA%\nvim` (backs up the existing one):
+
+```powershell
+git clone https://github.com/MorphyKutay/My-Neovim-Config
+cd My-Neovim-Config
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Set the terminal font to a Nerd Font (e.g. `JetBrainsMono Nerd Font`) in Windows Terminal.
 
 ### Automatic Installation (Recommended)
 
@@ -109,6 +127,8 @@ On first launch, Lazy.nvim installs automatically and downloads plugins. Run `:T
 Plugins are stored under `~/.local/share/nvim/lazy/` after installation.
 
 ## 🔄 Updating
+
+(Windows: run `.\install.ps1` instead of `./install.sh`)
 
 ```bash
 cd ~/My-Neovim-Config

@@ -31,9 +31,10 @@ vim.g.maplocalleader = " "
 -- =========================
 -- LAZY BOOTSTRAP
 -- =========================
+local is_windows = vim.fn.has("win32") == 1
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -148,12 +149,18 @@ require("lazy").setup({
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                -- Windows'ta make yoksa cmake ile derle
+                build = vim.fn.executable("make") == 1 and "make"
+                    or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+                enabled = vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1,
+            }
         },
         config = function()
             local telescope = require("telescope")
             telescope.setup()
-            telescope.load_extension("fzf")
+            pcall(telescope.load_extension, "fzf")
         end
     },
 
@@ -240,6 +247,7 @@ require("lazy").setup({
         config = function()
             require("toggleterm").setup({
                 open_mapping = nil,
+                shell = is_windows and (vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell") or vim.o.shell,
                 direction = "float",
                 float_opts = { border = "rounded" }
             })
