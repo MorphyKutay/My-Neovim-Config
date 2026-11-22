@@ -28,6 +28,12 @@ if ! command -v fc-cache &> /dev/null; then
     exit 1
 fi
 
+if ! command -v node &> /dev/null; then
+    echo "Error: node.js not found" >%2
+    exit 1
+fi
+
+
 #echo "--- Nerd Font kurulu mu? ---"; 
 fc-list 2>/dev/null | grep -iE "nerd|symbols" | head
 
